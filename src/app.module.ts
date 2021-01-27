@@ -1,10 +1,11 @@
+import { ProductModule } from './server/api/product/product.module';
+import { EventModule } from './server/api/event/event.module';
+import { EspaceModule } from './server/api/espace/espace.module';
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [ProductModule, EventModule, EspaceModule,],
+  controllers: [],
+  providers: [],
 })
-export class AppModule {}
+export class AppModule { }
