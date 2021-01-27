@@ -10,6 +10,7 @@ async function bootstrap() {
     .setDescription('Documentation')
     .setVersion('1.0')
     .addTag('Espace')
+    .addBearerAuth()
     // .addServer('http://angle.lecointreparis.com', 'Angle')
     .build();
 

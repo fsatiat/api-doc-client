@@ -9,10 +9,10 @@ export class ProductController {
 
   @Get(':id')
   @ApiOperation({ summary: 'Return detail for product' })
-  @ApiInternalServerErrorResponse({ description: 'Internal server error.', type: ErrorDTO, })
+  @ApiInternalServerErrorResponse({ description: 'Internal server error.', type: ErrorDTO })
   findOne(@Param('id') id: number): ProductDTO {
     const product: ProductDTO = {
-      id: 1,
+      id: id,
       category: "",
       famille: "",
       ingredients: "",
