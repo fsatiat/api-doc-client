@@ -1,0 +1,7 @@
+sites:
+  angle:
+    url: https://angle.lecointreparis.com
+    name: Angle
+  kosmo:
+    url: https://kosmo.lecointreparis.com
+    name: Kosmo
