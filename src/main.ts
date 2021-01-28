@@ -2,25 +2,31 @@ import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import { ConfigDTO } from './config/config_dto';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const configService: ConfigService = app.get(ConfigService);
-  const db = configService.get('sites');
+  const db: Map<string, ConfigDTO> = configService.get('sites');
+
   console.log(db);
 
-  const config = new DocumentBuilder()
-    .setTitle('Lecointre Paris - API')
-    .setDescription('Documentation')
-    .setVersion('1.0')
-    .addBearerAuth()
-    // .addServer(item)
-    .build();
+  for (let key in db) {
+    const value: ConfigDTO = db[key];
 
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+    const config = new DocumentBuilder()
+      .setTitle('Lecointre Paris - API')
+      .setDescription('Documentation')
+      .setVersion('1.0')
+      .addBearerAuth()
+      .addServer(value.url, value.name)
+      .build();
 
-  await app.listen(3000);
+    const document = SwaggerModule.createDocument(app, config);
+    SwaggerModule.setup(value.name, app, document);
+  }
+
+  await app.listen(3001);
 }
 bootstrap();

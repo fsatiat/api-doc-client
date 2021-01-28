@@ -6,6 +6,7 @@ import { EspaceModule } from './server/api/espace/espace.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import configuration from './config/configuration';
+import { ConfigFactory } from '@nestjs/config/dist/interfaces';
 
 @Module({
   imports: [
@@ -14,9 +15,7 @@ import configuration from './config/configuration';
     ProductModule,
     EventModule,
     EspaceModule,
-    ConfigModule.forRoot({
-      load: [configuration]
-    }),
+    ConfigModule.forRoot({ load: [configuration] }),
   ],
   controllers: [],
   providers: [],
