@@ -3,6 +3,7 @@ import { ApiBadRequestResponse, ApiBearerAuth, ApiForbiddenResponse, ApiInternal
 import { ErrorDTO } from '../core/error/error.dto';
 import { BADGE_ALREADY_EXIST, buildError, EMAIL_ALREADY_EXIST, FORBIDDEN, ID_ALREADY_EXIST, INVALID_PARAMETER, MATRICULE_ALREADY_EXIST, NOT_AUTHENTICATED, NOT_FOUND, REQUEST_FAILED, Status } from '../swagger/constant';
 import { UserDTO } from './dto/user.dto';
+import { UserRequestDTO } from './dto/user_request.dto';
 
 @ApiTags('Users')
 @Controller('users')
@@ -26,7 +27,7 @@ export class UsersController {
   @ApiUnauthorizedResponse(buildError({ ...NOT_AUTHENTICATED }))
   @ApiForbiddenResponse(buildError({ ...FORBIDDEN }))
   @ApiNotFoundResponse(buildError({ ...NOT_FOUND }))
-  create(@Body() user: UserDTO): UserDTO {
+  create(@Body() user: UserRequestDTO): UserRequestDTO {
     return userTest;
   }
 

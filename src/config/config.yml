@@ -5,3 +5,6 @@ sites:
   kosmo:
     url: https://kosmo.lecointreparis.com
     name: Kosmo
+  19m:
+    url: https://19m.lecointreparis.com
+    name: 19M
