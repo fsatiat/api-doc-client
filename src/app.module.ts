@@ -9,6 +9,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import configuration from './config/configuration';
 import { ConfigFactory } from '@nestjs/config/dist/interfaces';
+import { CostCenterModule } from './server/api/costcenter/costcenter.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { ConfigFactory } from '@nestjs/config/dist/interfaces';
     ProductModule,
     EventModule,
     EspaceModule,
+    CostCenterModule,
     ConfigModule.forRoot({ load: [configuration] }),
   ],
   controllers: [
