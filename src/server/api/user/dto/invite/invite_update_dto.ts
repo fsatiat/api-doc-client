@@ -1,6 +1,7 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiExtraModels, ApiProperty } from "@nestjs/swagger";
 
-export class UserDTO {
+@ApiExtraModels()
+export class InviteUpdateDto {
   @ApiProperty({ example: "001561A" })
   id: string;
 
@@ -13,9 +14,6 @@ export class UserDTO {
   @ApiProperty({ example: "John" })
   first_name: string;
 
-  @ApiProperty({ example: "john.doe@mail.com" })
-  email: string;
-
   @ApiProperty({ example: "4596" })
   matricule: string;
 
@@ -23,14 +21,5 @@ export class UserDTO {
   analytic: string;
 
   @ApiProperty({ example: 1 })
-  id_service: number;
-
-  @ApiProperty({ example: 1 })
   id_cost_center: number;
-
-  @ApiProperty({ example: 8 })
-  id_type_compte: number;
-
-  @ApiProperty({ example: true })
-  active: boolean;
 }

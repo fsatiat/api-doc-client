@@ -1,6 +1,7 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiExtraModels, ApiProperty } from "@nestjs/swagger";
 
-export class UserRequestDTO {
+@ApiExtraModels()
+export class SalarieUpdateDto {
   @ApiProperty({ example: "001561A" })
   id: string;
 

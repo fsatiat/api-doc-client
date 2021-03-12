@@ -1,9 +1,12 @@
 import { Body, Controller, Delete, Get, Param, Post, Query } from '@nestjs/common';
-import { ApiBadRequestResponse, ApiBearerAuth, ApiForbiddenResponse, ApiInternalServerErrorResponse, ApiNotFoundResponse, ApiOperation, ApiQuery, ApiResponse, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
-import { ErrorDTO } from '../core/error/error.dto';
+import { ApiBadRequestResponse, ApiBearerAuth, ApiBody, ApiForbiddenResponse, ApiInternalServerErrorResponse, ApiNotFoundResponse, ApiOperation, ApiQuery, ApiResponse, ApiTags, ApiUnauthorizedResponse, getSchemaPath } from '@nestjs/swagger';
 import { BADGE_ALREADY_EXIST, buildError, EMAIL_ALREADY_EXIST, FORBIDDEN, ID_ALREADY_EXIST, INVALID_PARAMETER, MATRICULE_ALREADY_EXIST, NOT_AUTHENTICATED, NOT_FOUND, REQUEST_FAILED, Status } from '../swagger/constant';
+import { UserCreateDto, UserUpdateDto } from './dto/create.dto';
+import { InviteCreateDto } from './dto/invite/invite_create_dto';
+import { InviteUpdateDto } from './dto/invite/invite_update_dto';
+import { SalarieCreateDto } from './dto/salarie/salarie_create_dto';
+import { SalarieUpdateDto } from './dto/salarie/salarie_update_dto';
 import { UserDTO } from './dto/user.dto';
-import { UserRequestDTO } from './dto/user_request.dto';
 
 @ApiTags('Users')
 @Controller('users')
@@ -20,14 +23,22 @@ export class UsersController {
   }
 
   @Post()
-  @ApiOperation({ summary: 'Update user' })
+  @ApiOperation({ summary: 'Create user' })
   @ApiBearerAuth()
   @ApiBadRequestResponse(buildError({ ...INVALID_PARAMETER, ...EMAIL_ALREADY_EXIST, ...BADGE_ALREADY_EXIST, ...MATRICULE_ALREADY_EXIST, ...ID_ALREADY_EXIST }))
   @ApiInternalServerErrorResponse(buildError({ ...REQUEST_FAILED }))
   @ApiUnauthorizedResponse(buildError({ ...NOT_AUTHENTICATED }))
   @ApiForbiddenResponse(buildError({ ...FORBIDDEN }))
   @ApiNotFoundResponse(buildError({ ...NOT_FOUND }))
-  create(@Body() user: UserRequestDTO): UserRequestDTO {
+  @ApiBody({
+    schema: {
+      anyOf: [
+        { $ref: getSchemaPath(InviteCreateDto), },
+        { $ref: getSchemaPath(SalarieCreateDto), }
+      ]
+    }
+  })
+  create(@Body() user: UserCreateDto): UserDTO {
     return userTest;
   }
 
@@ -58,7 +69,15 @@ export class UsersController {
   @ApiForbiddenResponse(buildError({ ...FORBIDDEN }))
   @ApiNotFoundResponse(buildError({ ...NOT_FOUND }))
   @ApiInternalServerErrorResponse(buildError({ ...REQUEST_FAILED }))
-  updateOne(@Param('id') id: number, @Body() user: UserDTO): UserDTO {
+  @ApiBody({
+    schema: {
+      oneOf: [
+        { $ref: getSchemaPath(SalarieUpdateDto), },
+        { $ref: getSchemaPath(InviteUpdateDto), }
+      ]
+    }
+  })
+  updateOne(@Param('id') id: number, @Body() user: UserUpdateDto): UserDTO {
     return userTest;
   }
 }
@@ -72,5 +91,7 @@ const userTest: UserDTO = {
   matricule: "4596",
   analytic: "74AP",
   id_service: 1,
-  active: true
+  active: true,
+  id_type_compte: 8,
+  id_cost_center: 1
 }
