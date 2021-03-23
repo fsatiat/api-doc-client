@@ -11,6 +11,7 @@ let appInsights = require('applicationinsights');
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.setGlobalPrefix('/api');
 
   appInsights
     .setup(process.env.APPINSIGHTS_INSTRUMENTATIONKEY)
