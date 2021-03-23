@@ -14,8 +14,6 @@ async function bootstrap() {
   const configService: ConfigService = app.get(ConfigService);
   const db: Map<string, ConfigDTO> = configService.get('sites');
 
-  console.log(db);
-
   for (let key in db) {
     const value: ConfigDTO = db[key];
 
@@ -27,7 +25,14 @@ async function bootstrap() {
       .addServer(value.url, value.name)
       .build();
 
-    const document = SwaggerModule.createDocument(app, config, { extraModels: [InviteCreateDto, InviteUpdateDto, SalarieCreateDto, SalarieUpdateDto] });
+    const document = SwaggerModule.createDocument(app, config, {
+      extraModels: [
+        InviteCreateDto,
+        InviteUpdateDto,
+        SalarieCreateDto,
+        SalarieUpdateDto,
+      ],
+    });
     SwaggerModule.setup(value.name, app, document);
   }
 
