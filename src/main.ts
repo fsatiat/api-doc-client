@@ -7,9 +7,23 @@ import { InviteCreateDto } from './server/api/user/dto/invite/invite_create_dto'
 import { InviteUpdateDto } from './server/api/user/dto/invite/invite_update_dto';
 import { SalarieCreateDto } from './server/api/user/dto/salarie/salarie_create_dto';
 import { SalarieUpdateDto } from './server/api/user/dto/salarie/salarie_update_dto';
+let appInsights = require('applicationinsights');
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  appInsights
+    .setup(process.env.APPINSIGHTS_INSTRUMENTATIONKEY)
+    .setAutoDependencyCorrelation(true)
+    .setAutoCollectRequests(true)
+    .setAutoCollectPerformance(true, true)
+    .setAutoCollectExceptions(true)
+    .setAutoCollectDependencies(true)
+    .setAutoCollectConsole(true)
+    .setUseDiskRetryCaching(true)
+    .setSendLiveMetrics(false)
+    .setDistributedTracingMode(appInsights.DistributedTracingModes.AI)
+    .start();
 
   const configService: ConfigService = app.get(ConfigService);
   const db: Map<string, ConfigDTO> = configService.get('sites');
