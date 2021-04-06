@@ -17,10 +17,10 @@ export class SalarieCreateDto {
   @ApiProperty({ example: "john.doe@mail.com" })
   email: string;
 
-  @ApiProperty({ example: "4596" })
+  @ApiProperty({ example: "A4596", required: false })
   matricule: string;
 
-  @ApiProperty({ example: "74AP" })
+  @ApiProperty({ example: "74AP", required: false })
   analytic: string;
 
   @ApiProperty({ example: 1 })
@@ -28,4 +28,7 @@ export class SalarieCreateDto {
 
   @ApiProperty({ example: 8 })
   id_type_compte: number;
+
+  @ApiProperty({example: 1, required: false})
+  id_cost_center?: number;
 }

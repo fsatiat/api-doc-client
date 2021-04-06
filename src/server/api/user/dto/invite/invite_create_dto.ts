@@ -14,10 +14,10 @@ export class InviteCreateDto {
   @ApiProperty({ example: "John" })
   first_name: string;
 
-  @ApiProperty({ example: "4596" })
+  @ApiProperty({ example: "A4596", required: false })
   matricule: string;
 
-  @ApiProperty({ example: "74AP" })
+  @ApiProperty({ example: "74AP", required: false })
   analytic: string;
 
   @ApiProperty({ example: 1 })
