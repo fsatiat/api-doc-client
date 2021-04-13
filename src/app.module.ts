@@ -2,7 +2,6 @@ import { TypeCompteController } from './server/api/type_compte/typecompte.contro
 import { TypeCompteModule } from './server/api/type_compte/typecompte.module';
 import { UsersModule } from './server/api/user/users.module';
 import { ServiceModule } from './server/api/service/service.module';
-import { ProductModule } from './server/api/product/product.module';
 import { EventModule } from './server/api/event/event.module';
 import { EspaceModule } from './server/api/espace/espace.module';
 import { Module } from '@nestjs/common';
@@ -16,7 +15,6 @@ import { CostCenterModule } from './server/api/costcenter/costcenter.module';
     TypeCompteModule,
     UsersModule,
     ServiceModule,
-    ProductModule,
     EventModule,
     EspaceModule,
     CostCenterModule,
