@@ -25,6 +25,7 @@ export class EspaceController {
       name: "",
       pictureBase64: ""
     }
+
     const menu: MenuDTO = {
       id: 1,
       category: "",
