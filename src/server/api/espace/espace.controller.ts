@@ -28,12 +28,12 @@ export class EspaceController {
     const menu: MenuDTO = {
       id: 1,
       category: "",
-      famille: "",
+      classement: 0,
+      idEspace: 1,
       ingredients: "",
       name: "",
       pictureBase64: "",
       price: 1.69,
-      sousfamille: "",
       stand: "",
       allergens: [allergen]
     }
