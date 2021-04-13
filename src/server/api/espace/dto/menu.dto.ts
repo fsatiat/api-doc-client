@@ -10,7 +10,7 @@ export class MenuDTO {
   @ApiProperty({ example: "Sel, Poivre" })
   ingredients: string;
 
-  @ApiProperty({ example: "Sel, Poivre" })
+  @ApiProperty({ example: 0 })
   classement: number;
 
   @ApiProperty({ example: 1.69 })
