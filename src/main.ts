@@ -10,7 +10,7 @@ import { SalarieUpdateDto } from './server/api/user/dto/salarie/salarie_update_d
 // let appInsights = require('applicationinsights');
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { cors: true });
   app.setGlobalPrefix('/api');
 
   // appInsights
