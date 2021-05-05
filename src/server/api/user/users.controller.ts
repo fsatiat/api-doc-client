@@ -4,7 +4,9 @@ import {
   Delete,
   Get,
   Param,
+  Patch,
   Post,
+  Put,
   Query,
 } from '@nestjs/common';
 import {
@@ -37,6 +39,11 @@ import {
 import { UserCreateDto, UserUpdateDto } from './dto/create.dto';
 import { InviteCreateDto } from './dto/invite/invite_create_dto';
 import { InviteUpdateDto } from './dto/invite/invite_update_dto';
+import {
+  ListUserCreateDTO,
+  ListUserUpdateDTO,
+} from './dto/invite/list_invite_create_dto';
+import { UserData } from './dto/response/user_data';
 import { SalarieCreateDto } from './dto/salarie/salarie_create_dto';
 import { SalarieUpdateDto } from './dto/salarie/salarie_update_dto';
 import { UserDTO } from './dto/user.dto';
@@ -106,7 +113,7 @@ export class UsersController {
     return userTest;
   }
 
-  @Post(':id')
+  @Put(':id')
   @ApiOperation({ summary: 'Update user' })
   @ApiBearerAuth()
   @ApiBadRequestResponse(
@@ -132,6 +139,58 @@ export class UsersController {
   @ApiBearerAuth()
   updateOne(@Param('id') id: number, @Body() user: UserUpdateDto): UserDTO {
     return userTest;
+  }
+
+  @Post('/create-all')
+  @ApiOperation({ summary: 'Create users' })
+  @ApiBearerAuth()
+  @ApiBody({
+    schema: {
+      type: 'array',
+      items: {
+        anyOf: [
+          { $ref: getSchemaPath(InviteCreateDto) },
+          { $ref: getSchemaPath(SalarieCreateDto) },
+        ],
+      },
+    },
+  })
+  createAll(@Body() userList: ListUserCreateDTO): UserData[] {
+    let userData: UserData;
+    userData.id = 'AZ78';
+    userData.success = false;
+    userData.description = 'ID already exist';
+
+    let userData2: UserData;
+    userData2.id = '96QS';
+    userData2.success = true;
+    userData2.description = '';
+
+    return [userData, userData2];
+  }
+
+  @Patch('/update-all')
+  @ApiOperation({ summary: 'Update users' })
+  @ApiBearerAuth()
+  @ApiBearerAuth()
+  @ApiBody({
+    schema: {
+      type: 'array',
+      items: {
+        anyOf: [
+          { $ref: getSchemaPath(InviteUpdateDto) },
+          { $ref: getSchemaPath(SalarieUpdateDto) },
+        ],
+      },
+    },
+  })
+  updateAll(@Body() userList: ListUserUpdateDTO): UserData[] {
+    let userData: UserData;
+    userData.id = 'AZ78';
+    userData.success = false;
+    userData.description = 'ID already exist';
+
+    return [userData];
   }
 }
 
