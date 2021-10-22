@@ -11,3 +11,21 @@ sites:
   39c:
     url: https://39c.lecointreparis.com
     name: 39C
+  32b:
+    url: https://32blanche.lecointreparis.com
+    name: 32blanche
+  le7:
+    url: https://le7.lecointreparis.com
+    name: le7
+  noda:
+    url: https://noda.lecointreparis.com
+    name: noda
+  vsh:
+    url: https://vsh.lecointreparis.com
+    name: vsh
+  711h:
+    url: https://7-11h.lecointreparis.com
+    name: 7-11h
+  insitu:
+    url: https://in-situ.lecointreparis.com
+    name: in-situ
