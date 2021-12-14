@@ -7,7 +7,7 @@ import {
   Patch,
   Post,
   Put,
-  Query,
+  Query
 } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
@@ -17,11 +17,10 @@ import {
   ApiInternalServerErrorResponse,
   ApiNotFoundResponse,
   ApiOperation,
-  ApiQuery,
-  ApiResponse,
-  ApiTags,
+  ApiParam,
+  ApiQuery, ApiTags,
   ApiUnauthorizedResponse,
-  getSchemaPath,
+  getSchemaPath
 } from '@nestjs/swagger';
 import {
   BADGE_ALREADY_EXIST,
@@ -34,14 +33,14 @@ import {
   NOT_AUTHENTICATED,
   NOT_FOUND,
   REQUEST_FAILED,
-  Status,
+  Status
 } from '../swagger/constant';
 import { UserCreateDto, UserUpdateDto } from './dto/create.dto';
 import { InviteCreateDto } from './dto/invite/invite_create_dto';
 import { InviteUpdateDto } from './dto/invite/invite_update_dto';
 import {
   ListUserCreateDTO,
-  ListUserUpdateDTO,
+  ListUserUpdateDTO
 } from './dto/invite/list_invite_create_dto';
 import { UserData } from './dto/response/user_data';
 import { SalarieCreateDto } from './dto/salarie/salarie_create_dto';
@@ -137,6 +136,12 @@ export class UsersController {
     },
   })
   @ApiBearerAuth()
+  @ApiParam({name: 'reactivate', 
+    type: Boolean, 
+    description: 'If true, you can reactivate the user and update it\'s property', 
+    required: false,
+    enum: [0, 1]
+  })
   updateOne(@Param('id') id: number, @Body() user: UserUpdateDto): UserDTO {
     return userTest;
   }
