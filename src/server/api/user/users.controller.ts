@@ -138,7 +138,7 @@ export class UsersController {
   @ApiBearerAuth()
   @ApiParam({name: 'reactivate', 
     type: Boolean, 
-    description: 'If true, you can reactivate the user and update it\'s property', 
+    description: 'If true, you can reactivate the user and update its property', 
     required: false,
     enum: [0, 1]
   })
