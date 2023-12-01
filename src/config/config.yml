@@ -29,3 +29,6 @@ sites:
   insitu:
     url: https://in-situ.lecointreparis.com
     name: in-situ
+  hermes:
+    url: https://hermes.lecointreparis.com
+    name: Hermes
